@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.virtualtec.kangutest.OrderDetailsFragment">
+
+    <TextView
+        android:id="@+id/textview_order_ordersDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:text="@string/order"
+        android:textSize="22sp"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_ordersDetails"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:scrollbars="vertical"
+        android:layout_below="@id/textview_order_ordersDetails"
+        android:layout_above="@id/linear_total_ordersDetails"/>
+    <TextView
+        android:id="@+id/textview_rv_ordersDetails"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/no_data"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_below="@id/textview_order_ordersDetails"
+        android:layout_above="@id/linear_total_ordersDetails"/>
+
+    <LinearLayout
+        android:id="@+id/linear_total_ordersDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:padding="15dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_alignParentBottom="true">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorGray"
+            android:layout_marginBottom="5dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="25dp"
+                android:layout_weight="4"
+                android:text="@string/total"
+                android:textSize="14sp"
+                android:textColor="@color/colorPrimary"/>
+            <TextView
+                android:id="@+id/textview_total_ordersDetails"
+                android:layout_width="0dp"
+                android:layout_height="25dp"
+                android:layout_weight="6"
+                android:text="$0.0"
+                android:textSize="14sp"
+                android:textColor="@color/colorPrimary"
+                android:gravity="end"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="25dp"
+                android:layout_weight="4"
+                android:text="@string/status"
+                android:textSize="14sp"
+                android:textColor="@color/colorPrimary"/>
+            <TextView
+                android:id="@+id/textview_status_ordersDetails"
+                android:layout_width="0dp"
+                android:layout_height="25dp"
+                android:layout_weight="6"
+                android:text="Estado"
+                android:textSize="14sp"
+                android:textColor="@color/colorPrimary"
+                android:gravity="end"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_pay_process_ordersDetails"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:animateLayoutChanges="true"
+            android:text="@string/pay_payu"
+            android:textSize="11sp"
+            android:background="@drawable/button_oval_fb"
+            android:textColor="@color/colorWhite"/>
+    </LinearLayout>
+
+</RelativeLayout>

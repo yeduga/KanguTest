@@ -1,0 +1,73 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
+    defaultConfig {
+        applicationId "com.virtualtec.kangutest"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 2
+        versionName "1.1"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        vectorDrawables.useSupportLibrary = true
+
+        multiDexEnabled true
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            // Configurations keys
+            buildConfigField "String", "SERVER_URL", '"http://173.199.148.4"'
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "SERVER_URL", '"http://173.199.148.4"'
+        }
+    }
+}
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    compile 'com.android.support:multidex:1.0.0'
+
+    implementation 'com.facebook.android:facebook-android-sdk:4.28.0'
+    implementation 'br.com.mauker.materialsearchview:materialsearchview:1.2.2'
+
+    // Google Analytics
+    compile 'com.google.android.gms:play-services-analytics:7.3.0'
+
+    compile 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support:design:26.1.0'
+    compile 'com.android.support:cardview-v7:26.1.0'
+    compile 'com.android.support:recyclerview-v7:26.1.0'
+    testCompile 'junit:junit:4.12'
+
+    compile 'com.android.support:support-vector-drawable:26.1.0'
+
+    // Awesome Validation
+    compile 'com.basgeekball:awesome-validation:2.0'
+
+    // ButterKnife
+    compile 'com.github.ittianyu:BottomNavigationViewEx:1.2.4'
+    compile 'q.rorbin:badgeview:1.1.0'
+
+    compile 'jp.wasabeef:recyclerview-animators:2.2.7'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+
+    // Retrofit2
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+
+    // Butterknife
+    compile 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+}
+

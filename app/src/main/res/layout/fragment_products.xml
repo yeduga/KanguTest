@@ -1,0 +1,81 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.virtualtec.kangutest.ProductsFragment">
+
+    <LinearLayout
+        android:id="@+id/linear_categories"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/colorAccent"
+        android:orientation="vertical"
+        android:elevation="4dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:text="@string/categories"
+            android:gravity="center"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="-5dp"
+            android:textColor="@color/colorWhite"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_categories"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:clipToPadding="false"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/tv_loading_categories"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="@string/loading"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:textColor="@color/colorWhite" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_info_products"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:text="@string/info"
+        android:visibility="gone"
+        android:layout_above="@id/linear_categories" />
+
+    <LinearLayout
+        android:id="@+id/linear_loading_products"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_below="@id/linear_categories">
+
+        <com.virtualtec.kangutest.ClassesCustom.GifView
+            android:id="@+id/loading_products"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center" />
+    </LinearLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout_products"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:layout_below="@id/linear_categories">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_products"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:scrollbars="vertical"/>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,114 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.virtualtec.kangutest.ProductsCategoryFragment">
+
+    <LinearLayout
+        android:id="@+id/linear_categories_productsCategory"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/colorAccent"
+        android:orientation="vertical"
+        android:elevation="4dp">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_categories_productsCategory"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:clipToPadding="false"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/tv_loading_categories_productsCategory"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="@string/loading"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:textColor="@color/colorWhite" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_banner"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="vertical"
+        android:layout_below="@id/linear_categories_productsCategory">
+
+        <ImageView
+            android:id="@+id/image_category"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:adjustViewBounds="true"
+            android:layout_gravity="center"/>
+        <TextView
+            android:id="@+id/textview_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/colorPrimary"
+            android:text="Category Product"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginTop="-5dp"/>
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_subcategories_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:layout_below="@id/linear_banner"/>
+    <TextView
+        android:id="@+id/tv_info_subcategories_category"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/loading_subcategories"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_below="@id/linear_banner" />
+
+    <TextView
+        android:id="@+id/tv_info_products_category"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:text="@string/info"
+        android:visibility="gone"
+        android:padding="50dp"
+        android:layout_below="@id/rv_subcategories_category" />
+
+    <LinearLayout
+        android:id="@+id/linear_loading_products_category"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_below="@id/rv_subcategories_category">
+
+        <com.virtualtec.kangutest.ClassesCustom.GifView
+            android:id="@+id/loading_products_category"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            />
+    </LinearLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout_productsCategory"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rv_subcategories_category">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_productsCategory"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:scrollbars="vertical"/>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</RelativeLayout>

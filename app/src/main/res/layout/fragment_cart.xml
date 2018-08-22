@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relative_body_cart"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.virtualtec.kangutest.CartFragment">
+
+    <ListView
+        android:id="@+id/listview_cart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@null"
+        android:scrollbars="vertical"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        android:layout_above="@+id/linear_buttons_cart">
+    </ListView>
+
+    <TextView
+        android:id="@+id/tv_info_cart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:text="@string/no_exist_products_cart"
+        android:padding="50dp"
+        android:layout_below="@id/rv_subcategories_category"
+        android:layout_above="@+id/linear_buttons_cart"/>
+
+    <LinearLayout
+        android:id="@+id/linear_buttons_cart"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="15dp"
+        android:paddingBottom="15dp"
+        android:paddingRight="15dp"
+        android:gravity="center"
+        android:layout_alignParentBottom="true">
+
+        <View
+            android:id="@+id/view_horizontal_2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorGray"
+            android:layout_marginBottom="5dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:text="@string/TOTAL"
+                android:textSize="14sp"
+                android:textColor="@color/colorPrimary"
+                android:layout_centerVertical="true"/>
+            <TextView
+                android:id="@+id/textview_total_cart"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:text="$0.0"
+                android:textSize="14sp"
+                android:textColor="@color/colorPrimary"
+                android:textAlignment="textEnd"
+                android:layout_centerVertical="true"/>
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/btn_purchase_cart"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:text="@string/process_purchase"
+            android:textSize="11sp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/button_oval"
+            android:textColor="@color/colorWhite"/>
+        <Button
+            android:id="@+id/btn_createList_cart"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:text="@string/create_list"
+            android:textSize="11sp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/button_oval_white"
+            android:textColor="@color/colorPrimary"/>
+
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinator_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="20dp"
+        android:paddingLeft="35dp"
+        android:paddingRight="35dp"
+        android:background="#FFF"
+        android:animateLayoutChanges="true"
+        tools:context="com.virtualtec.kangutest.LoginActivity">
+
+        <LinearLayout
+            android:id="@+id/linear_loading_login"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.virtualtec.kangutest.ClassesCustom.GifView
+                android:id="@+id/loading_login"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/validate_data"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/relative_body"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true"
+            android:background="#FFF">
+
+            <ImageView
+                android:id="@+id/lg_image"
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                android:src="@drawable/logo_vertical"
+                android:padding="10dp"
+                android:layout_marginTop="40dp"
+                android:layout_alignParentTop="true" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/text_input_layout_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/name_user"
+                android:layout_marginTop="25dp"
+                android:layout_below="@id/lg_image">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/edit_text_user"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_account"
+                    android:inputType="textEmailAddress"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/text_input_layout_pass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/password"
+                android:layout_below="@id/text_input_layout_user">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/edit_text_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_lock"
+                    android:inputType="textPassword"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textview_lostpassword_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/recover_password"
+                android:textSize="14sp"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginTop="5dp"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/text_input_layout_pass"/>
+
+            <Button
+                android:id="@+id/button_login"
+                android:layout_width="250dp"
+                android:layout_height="35dp"
+                android:clickable="true"
+                android:text="@string/login"
+                android:textSize="12sp"
+                android:background="@drawable/button_oval"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/colorWhite"
+                android:layout_above="@+id/button_login_facebook" />
+
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/button_login_facebook"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_above="@+id/button_signup"/>
+
+            <Button
+                android:id="@+id/button_signup"
+                android:layout_width="250dp"
+                android:layout_height="35dp"
+                android:text="@string/signup"
+                android:textColor="@color/colorPrimary"
+                android:textSize="12sp"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/button_oval_white"
+                android:layout_alignParentBottom="true" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

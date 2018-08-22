@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.virtualtec.kangutest.ListDetailsFragment">
+
+    <LinearLayout
+        android:id="@+id/linear_textlist_listDetails"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:weightSum="10">
+
+            <TextView
+                android:id="@+id/textview_name_listDetails"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:text="@string/name_list"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:gravity="left|center"
+                android:textColor="@color/colorPrimary"
+                android:textAlignment="center"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:paddingRight="5dp"
+                android:paddingLeft="10dp"/>
+
+            <ImageButton
+                android:id="@+id/imagebtn_edit_listDetails"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:srcCompat="@drawable/ic_edit"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view_horizontal_listDetails"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorGray"
+        android:layout_below="@id/linear_textlist_listDetails"/>
+
+    <LinearLayout
+        android:id="@+id/linear_loading_listDetails"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="25dp"
+        android:gravity="center"
+        android:visibility="visible">
+
+        <com.virtualtec.kangutest.ClassesCustom.GifView
+            android:id="@+id/loading_listDetails"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textview_rv_products_listDetails"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/no_data"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_below="@id/view_horizontal_listDetails"
+        android:layout_above="@id/view_horizontal2_listDetails"/>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout_products_listDetails"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/view_horizontal_listDetails"
+        android:layout_above="@id/view_horizontal2_listDetails">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_products_listDetails"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:scrollbars="vertical"/>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <View
+        android:id="@+id/view_horizontal2_listDetails"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorGray"
+        android:layout_marginBottom="5dp"
+        android:layout_above="@id/linear_buttons_listDetails"/>
+
+    <LinearLayout
+        android:id="@+id/linear_buttons_listDetails"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="15dp"
+        android:paddingBottom="15dp"
+        android:paddingRight="15dp"
+        android:gravity="center"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/btn_purchase_listDetails"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:text="@string/generate_purchase_order"
+            android:textSize="11sp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/button_oval"
+            android:textColor="@color/colorWhite"/>
+
+        <Button
+            android:id="@+id/btn_delete_listDetails"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/delete_list"
+            android:textSize="12sp"
+            android:background="@drawable/button_oval_white"
+            android:textColor="@color/colorPrimary" />
+
+    </LinearLayout>
+
+</RelativeLayout>

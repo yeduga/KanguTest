@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="115dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/relative_gridList"
+            android:layout_width="215dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@drawable/list_background"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:paddingTop="25dp"
+            android:paddingLeft="20dp"
+            android:paddingBottom="15dp"
+            android:paddingRight="20dp">
+
+            <View
+                android:id="@+id/view_vertical_gridList"
+                android:layout_width="5dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorAccent"/>
+
+            <ImageView
+                android:id="@+id/image_logo_gridList"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/logo_sin_texto"
+                android:layout_alignParentRight="true"/>
+
+            <TextView
+                android:id="@+id/textview_name_gridList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/view_vertical_gridList"
+                android:layout_toLeftOf="@id/image_logo_gridList"
+                android:text="@string/name_list"
+                android:textSize="14sp"
+                android:maxLines="1"
+                android:ellipsize="end" />
+
+            <TextView
+                android:id="@+id/textview_label1_gridList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/view_vertical_gridList"
+                android:layout_below="@id/textview_name_gridList"
+                android:text="Creacion: 00-00-00"
+                android:textSize="12sp"
+                android:maxLines="1"
+                android:ellipsize="end"/>
+
+            <TextView
+                android:id="@+id/textview_label2_gridList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/view_vertical_gridList"
+                android:layout_below="@id/textview_label1_gridList"
+                android:text="Entrega: 00-00-00"
+                android:textSize="12sp"
+                android:maxLines="1"
+                android:ellipsize="end"/>
+
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btn_viewlist_gridList"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:text="@string/see"
+                android:textSize="10sp"
+                android:gravity="center"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/button_oval"
+                android:textColor="@color/colorWhite" />
+
+            <Button
+                android:id="@+id/btn_schedulelist_gridList"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:text="@string/program"
+                android:textSize="10sp"
+                android:gravity="center"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/button_oval_white"
+                android:textColor="@color/colorPrimary" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/colorGray"/>
+
+</LinearLayout>

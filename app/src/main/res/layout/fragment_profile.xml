@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.virtualtec.kangutest.ProfileFragment">
+    <ScrollView
+        android:id="@+id/scrollview_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Contents -->
+            <RelativeLayout
+                android:id="@+id/rl_image_profile"
+                android:layout_width="match_parent"
+                android:layout_height="180dp">
+
+                <ImageView
+                    android:id="@+id/image_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:adjustViewBounds="true"
+                    android:layout_gravity="center"
+                    android:background="@color/colorGray"/>
+
+                <ImageButton
+                    android:id="@+id/btn_photo_profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    app:srcCompat="@drawable/ic_camera"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/linear_descr"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:weightSum="5">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3.5"
+                    android:paddingRight="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textview_username_profile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/loading"
+                        android:textSize="20sp"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:textColor="@color/colorBlack"/>
+                    <TextView
+                        android:id="@+id/textview_email_profile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/loading"
+                        android:textSize="14sp"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorGray"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/calendar"
+                        android:textSize="15dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorBlack" />
+
+                    <ImageButton
+                        android:id="@+id/btn_calendar_history_profile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="10dp"
+                        android:layout_marginTop="-5dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        app:srcCompat="@drawable/ic_calendar"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorGray"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/next_delivery"
+                    android:textSize="16dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"/>
+
+                <LinearLayout
+                    android:id="@+id/linear_loading_nextDelivery_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="25dp"
+                    android:gravity="center"
+                    android:visibility="gone">
+
+                    <com.virtualtec.kangutest.ClassesCustom.GifView
+                        android:id="@+id/loading_nextDelivery_profile"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linear_nextDelivery_profile"
+                    android:layout_width="160dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:padding="6dp"
+                    android:background="@color/colorWhite"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:background="@color/colorPrimaryDark"/>
+                    <TextView
+                        android:id="@+id/textview_month_nextDelivery_profile"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:background="@color/colorWhite"
+                        android:text="@string/there_is_not"
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textStyle="italic"
+                        android:textColor="@color/colorBlack"/>
+                    <TextView
+                        android:id="@+id/textview_day_nextDelivery_profile"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="00"
+                        android:textSize="45dp"
+                        android:gravity="center"
+                        android:textStyle="italic"
+                        android:background="@color/colorPrimary"
+                        android:textColor="@color/colorWhite"/>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_orders_history_profile"
+                    android:layout_width="160dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/orders_history"
+                    android:textSize="12sp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/button_oval"
+                    android:textColor="@color/colorWhite" />
+
+            </LinearLayout>
+
+            <!--Lists-->
+            <LinearLayout
+                android:id="@+id/linear_lists_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="true"
+                style="@style/CardViewStyle">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="5dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:text="@string/my_lists"/>
+                        <TextView
+                            android:id="@+id/textview_seemorelists_profile"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/see_more"
+                            android:textSize="12sp"
+                            android:textColor="@color/colorPrimary"
+                            android:textAlignment="textEnd"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linear_loading_list_profile"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="25dp"
+                        android:gravity="center">
+
+                        <com.virtualtec.kangutest.ClassesCustom.GifView
+                            android:id="@+id/loading_lists_profile"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_gravity="center" />
+                    </LinearLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_lists_profile"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clipToPadding="false"
+                        android:scrollbars="vertical"/>
+                    <TextView
+                        android:id="@+id/textview_rv_lists_profile"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:text="@string/no_data"
+                        android:gravity="center"
+                        android:visibility="gone"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--Addresses-->
+            <LinearLayout
+                android:id="@+id/linear_addresses_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="true"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="10">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:text="@string/my_addresses"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:layout_weight="9.5" />
+
+                    <ImageButton
+                        android:id="@+id/imagebtn_add_address_profile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.5"
+                        android:padding="5dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        app:srcCompat="@drawable/ic_plus"/>
+                </LinearLayout>
+
+                <ListView
+                    android:id="@+id/listview_address_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:id="@+id/textview_loading_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/loading"
+                    android:padding="10dp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorGray"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

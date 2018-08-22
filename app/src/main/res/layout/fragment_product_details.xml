@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.virtualtec.kangutest.ProductDetailsFragment">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--Contents-->
+            <RelativeLayout
+                android:id="@+id/rl_image"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_alignParentTop="true">
+
+                <ImageView
+                    android:id="@+id/image_product"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:adjustViewBounds="true"
+                    android:layout_gravity="center"
+                    android:src="@drawable/logo_horizontal"
+                    android:background="@color/colorWhite"/>
+
+                <TextView
+                    android:id="@+id/textview_name_product"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/name_product"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:gravity="left|center"
+                    android:textColor="@color/colorWhite"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:paddingRight="50dp"
+                    android:paddingLeft="15dp"
+                    android:background="#B300CE63"
+                    android:layout_alignParentBottom="true"/>
+                <TextView
+                    android:id="@+id/textview_price_product"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_centerHorizontal="true"
+                    android:text="$0.0"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:paddingRight="15dp"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/colorWhite"
+                    android:layout_alignParentBottom="true"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingRight="15dp"
+                android:paddingLeft="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="@string/call_product_details"
+                    android:gravity="center"
+                    android:visibility="gone"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorGray"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textview_descr_product"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingTop="10dp"
+                        android:text="Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta)." />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linear_spinner_productDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2.5"
+                        android:text="@string/maturity"
+                        android:gravity="center"/>
+                    <Spinner
+                        android:id="@+id/spinner_maturity"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2.5"
+                        android:textSize="20sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linear_qty_product"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:layout_below="@+id/linear_descr">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_weight="2"
+                        android:weightSum="5"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal"
+                        android:background="@drawable/button_oval_accent">
+
+                        <ImageButton
+                            android:id="@+id/image_btn_less_prod"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:layout_weight="1.5"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            app:srcCompat="@drawable/ic_minus_white" />
+
+                        <TextView
+                            android:id="@+id/textview_qty_product_details"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:text="0"
+                            android:textSize="14sp"
+                            android:gravity="center"
+                            android:background="@color/colorWhite"/>
+
+                        <ImageButton
+                            android:id="@+id/image_btn_more_prod"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:layout_weight="1.5"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            app:srcCompat="@drawable/ic_plus_white" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="2.5"
+                        android:layout_gravity="center">
+
+                        <TextView
+                            android:id="@+id/textview_und_product_details"
+                            android:layout_width="match_parent"
+                            android:layout_height="34dp"
+                            android:layout_margin="15dp"
+                            android:text="LBS"
+                            android:textSize="18sp"
+                            android:textColor="@color/colorPrimary"
+                            android:textAlignment="center"
+                            android:layout_gravity="center"
+                            android:background="@drawable/underlined_primary"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linear_buttons"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:layout_alignParentBottom="true">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorGray"
+                        android:layout_marginBottom="5dp"/>
+
+                    <Button
+                        android:id="@+id/button_add_cart_product_details"
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:text="@string/add_to_cart"
+                        android:textSize="11sp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/button_oval"
+                        android:textColor="@color/colorWhite"/>
+                    <Button
+                        android:id="@+id/button_add_list_product_details"
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:text="@string/add_to_list"
+                        android:textSize="11sp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/button_oval_white"
+                        android:textColor="@color/colorPrimary"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
+

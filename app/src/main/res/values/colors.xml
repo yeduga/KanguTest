@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#00CE63</color>
+    <color name="colorPrimaryDark">#02A84D</color>
+    <color name="colorAccent">#52c689</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorWhiteTrans">#99FFFFFF</color>
+    <color name="colorGray">#ccc</color>
+    <color name="colorGrayLight">#eaeaea</color>
+    <color name="colorBlueMaterialDesign">#2196F3</color>
+    <color name="colorSnackbarAction">#ffff7663</color>
+    <color name="colorGrayBlack">#818181</color>
+
+</resources>

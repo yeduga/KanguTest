@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="0dp"
+    android:paddingLeft="6dp"
+    android:paddingBottom="0dp"
+    android:paddingRight="6dp">
+
+    <Button
+        android:id="@+id/btn_name_grid_subcategory"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:text="@string/subcategory"
+        android:textSize="12sp"
+        android:background="@drawable/cell_oval"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorWhite"/>
+
+</RelativeLayout>
