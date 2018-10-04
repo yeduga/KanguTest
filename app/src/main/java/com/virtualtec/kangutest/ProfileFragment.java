@@ -2,6 +2,7 @@ package com.virtualtec.kangutest;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -148,14 +149,16 @@ public class ProfileFragment extends Fragment {
                 alertDialog
                         .setMessage(
                                 Html.fromHtml(
-                                "Comuniquese con nosotros con el siguiente numero:<br>"+
-                                        "<center>"+ getResources().getString(R.string.num_contact) +"</center>"
+                                "Comuniquese con nosotros al siguiente número:<br><br>"+
+                                        "<b>"+ getResources().getString(R.string.num_contact) +"</b>"
                                 )
                         )
                         .setCancelable(false)
                         .setPositiveButton("Llamar",new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,int id) {
-
+                            Intent i = new Intent(Intent.ACTION_DIAL);
+                            i.setData(Uri.parse("tel:" + getResources().getString(R.string.num_contact)));
+                            startActivity(i);
                             }
                         })
                         .setNegativeButton("Cancelar",new DialogInterface.OnClickListener() {

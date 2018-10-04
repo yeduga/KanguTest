@@ -214,7 +214,7 @@ public class LoginActivity extends AppCompatActivity {
     // Recuperar clave
     @OnClick(R.id.textview_lostpassword_login)
     public void ClickLostPassword(){
-        Intent viewIntent = new Intent("android.intent.action.VIEW", Uri.parse("http://173.199.148.4/kangu/mi-cuenta/lost-password/ "));
+        Intent viewIntent = new Intent("android.intent.action.VIEW", Uri.parse("http://kangu.com.co/mi-cuenta/lost-password/"));
         startActivity(viewIntent);
     }
 
