@@ -3,6 +3,7 @@ package com.virtualtec.kangutest.Datas;
 import com.google.gson.annotations.SerializedName;
 import com.virtualtec.kangutest.Datas.SubDatas.DataAttributes;
 import com.virtualtec.kangutest.Datas.SubDatas.DataImage;
+import com.virtualtec.kangutest.Datas.SubDatas.DataVariations;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -25,8 +26,9 @@ public class DataProducts implements Serializable {
     private String unity;
     private ArrayList<DataImage> images;
     private ArrayList<DataAttributes> attributes;
+    private ArrayList<DataVariations> variations;
 
-    public DataProducts(String id, String id_detail_list, String name, String type, String price, String regular_price, String description, String stock_quantity, String short_description, String unity, ArrayList<DataImage> images, ArrayList<DataAttributes> attributes) {
+    public DataProducts(String id, String id_detail_list, String name, String type, String price, String regular_price, String description, String stock_quantity, String short_description, String unity, ArrayList<DataImage> images, ArrayList<DataAttributes> attributes, ArrayList<DataVariations> variations) {
         this.id = id;
         this.id_detail_list = id_detail_list;
         this.name = name;
@@ -39,6 +41,7 @@ public class DataProducts implements Serializable {
         this.unity = unity;
         this.images = images;
         this.attributes = attributes;
+        this.variations = variations;
     }
 
     public String getId() {
@@ -81,4 +84,5 @@ public class DataProducts implements Serializable {
 
     public ArrayList<DataAttributes> getAttributes() { return attributes; }
 
+    public ArrayList<DataVariations> getVariations() { return variations; }
 }
