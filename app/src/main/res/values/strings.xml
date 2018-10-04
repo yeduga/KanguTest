@@ -184,5 +184,8 @@
     <string name="orders">Pedidos</string>
     <string name="order_made">Pedido realizado</string>
     <string name="delivery_time">Hora de entrega</string>
+    <string name="about">Acerca De</string>
+    <string name="num_contact_text">Número contacto</string>
+    <string name="num_contact">+57 0000000000</string>
 
 </resources>

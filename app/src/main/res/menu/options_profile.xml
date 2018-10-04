@@ -9,6 +9,12 @@
         app:showAsAction="never"
         android:title="@string/settings"/>
     <item
+        android:id="@+id/action_num_contact"
+        android:icon="@drawable/ic_delete"
+        android:orderInCategory="99"
+        app:showAsAction="never"
+        android:title="@string/num_contact_text"/>
+    <item
         android:id="@+id/action_logout"
         android:icon="@drawable/ic_delete"
         android:orderInCategory="99"

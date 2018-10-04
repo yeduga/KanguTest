@@ -142,6 +142,29 @@ public class ProfileFragment extends Fragment {
                         });
                 alertDialogBuilder.create().show();
                 return true;
+            case R.id.action_num_contact:
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+                alertDialog.setTitle(getResources().getString(R.string.num_contact_text));
+                alertDialog
+                        .setMessage(
+                                Html.fromHtml(
+                                "Comuniquese con nosotros con el siguiente numero:<br>"+
+                                        "<center>"+ getResources().getString(R.string.num_contact) +"</center>"
+                                )
+                        )
+                        .setCancelable(false)
+                        .setPositiveButton("Llamar",new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+
+                            }
+                        })
+                        .setNegativeButton("Cancelar",new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+                alertDialog.create().show();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
