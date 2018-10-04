@@ -23,9 +23,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
-import com.google.android.gms.analytics.Tracker;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
-import com.virtualtec.kangutest.Adapters.ProductsCategoryAdapter;
 import com.virtualtec.kangutest.Datas.DataCategory;
 import com.virtualtec.kangutest.Datas.DataProducts;
 import com.virtualtec.kangutest.Datas.DataUser;
@@ -36,13 +34,11 @@ import java.util.ArrayList;
 import br.com.mauker.materialsearchview.MaterialSearchView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
 
 public class HomeActivity extends AppCompatActivity {
 

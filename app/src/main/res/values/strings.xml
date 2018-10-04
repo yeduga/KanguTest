@@ -183,5 +183,6 @@
     <string name="order_correctly_made">Pedido realizado correctamente</string>
     <string name="orders">Pedidos</string>
     <string name="order_made">Pedido realizado</string>
+    <string name="delivery_time">Hora de entrega</string>
 
 </resources>

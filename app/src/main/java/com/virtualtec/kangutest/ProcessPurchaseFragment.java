@@ -1,5 +1,6 @@
 package com.virtualtec.kangutest;
 
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.animation.Animator;
@@ -9,6 +10,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -23,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
@@ -31,6 +34,7 @@ import com.virtualtec.kangutest.Adapters.AddressAdapter;
 import com.virtualtec.kangutest.App.MyApplication;
 import com.virtualtec.kangutest.ClassesCustom.DatePickerFragment;
 import com.virtualtec.kangutest.ClassesCustom.GifView;
+import com.virtualtec.kangutest.ClassesCustom.TimePickerFragment;
 import com.virtualtec.kangutest.Datas.DataAddress;
 import com.virtualtec.kangutest.Datas.DataResponse;
 import com.virtualtec.kangutest.Datas.DataUser;
@@ -74,6 +78,7 @@ public class ProcessPurchaseFragment extends Fragment {
     @BindView(R.id.textview_itemArticles_processPurchase) TextView textViewItemArticles;
     @BindView(R.id.textview_total_processPurchase) TextView textViewTotal;
     @BindView(R.id.edit_text_schedule_processPurchase) EditText editTextSchedule;
+    @BindView(R.id.edit_text_time_processPurchase) EditText editTextTime;
     @BindView(R.id.edit_text_address_processPurchase) EditText editTextAddress;
     @BindView(R.id.imagebtn_view_address_processPurchase) ImageButton btnViewAddress;
     @BindView(R.id.btn_process_purchase) Button btnProcessPurchase;
@@ -154,11 +159,12 @@ public class ProcessPurchaseFragment extends Fragment {
         if (awesomeValidation.validate()){
             functLoading(0);
             arrayUser = ((HomeActivity)getActivity()).ArrayUser;
+            String scheduleText = editTextSchedule.getText().toString() + " " + editTextTime.getText().toString();
             dataResponse = service.CreateOrder("create_order", arrayUser.get(0).getId(),
                     arrayUser.get(0).getFirst_name(), "", editTextAddress.getText().toString(),
                     "", arrayUser.get(0).getBilling().getCity(), "", "", "",
                     arrayUser.get(0).getBilling().getPhone(), arrayUser.get(0).getEmail(), strDataProducts,
-                    editTextSchedule.getText().toString());
+                    scheduleText);
             dataResponse.enqueue(new Callback<DataResponse>() {
                 @Override
                 public void onResponse(Call<DataResponse> call, Response<DataResponse> response) {
@@ -282,6 +288,11 @@ public class ProcessPurchaseFragment extends Fragment {
         showDatePickerDialog();
     }
 
+    @OnClick(R.id.edit_text_time_processPurchase)
+    public void functTimePicker(){
+        showTimePickerDialog();
+    }
+
     private void showDatePickerDialog() {
         DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -292,6 +303,17 @@ public class ProcessPurchaseFragment extends Fragment {
             }
         });
         newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
+    }
+
+    public void showTimePickerDialog() {
+        TimePickerFragment newFragment = TimePickerFragment.newInstance(new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                final String selectedDate = twoDigits(hourOfDay) + ":" + twoDigits(minute);
+                editTextTime.setText(selectedDate);
+            }
+        });
+        newFragment.show(getActivity().getSupportFragmentManager(), "timePicker");
     }
 
     private String twoDigits(int n) {
