@@ -53,12 +53,13 @@
                         android:id="@+id/name_productCart"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginLeft="3dp"
                         android:text="@string/name_product"
                         android:textColor="@color/colorPrimary"
                         android:textSize="16dp"
-                        android:maxLines="1"
+                        android:maxLines="2"
                         android:ellipsize="end"/>
                     <TextView
                         android:id="@+id/descr_productCart"

@@ -4,11 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-
-import com.virtualtec.kangutest.Datas.DataProducts;
-
-import java.util.ArrayList;
 
 /**
  * Created by Android on 9/03/18.
@@ -19,6 +14,7 @@ public class DataBaseManager {
     public static final String TABLE_NAME = "products";
     public static final String CN_ID = "id";
     public static final String CN_ID_PRODUCT = "id_product";
+    public static final String CN_ID_VARIATION = "id_variation";
     public static final String CN_REFERENCE = "reference";
     public static final String CN_NAME = "name";
     public static final String CN_DESCR = "descr";
@@ -31,6 +27,7 @@ public class DataBaseManager {
     public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " ("
             + CN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + CN_ID_PRODUCT + " TEXT NOT NULL,"
+            + CN_ID_VARIATION + " TEXT NOT NULL,"
             + CN_REFERENCE + " TEXT NOT NULL,"
             + CN_NAME + " TEXT NOT NULL,"
             + CN_DESCR + " TEXT NOT NULL,"
@@ -58,9 +55,10 @@ public class DataBaseManager {
         }
     }
 
-    public ContentValues generateContentValues(String id_product, String reference, String name, String descr, String price, String unity, String percentage_iva, String qty, String image){
+    public ContentValues generateContentValues(String id_product, String id_variation, String reference, String name, String descr, String price, String unity, String percentage_iva, String qty, String image){
         ContentValues valores = new ContentValues();
         valores.put(CN_ID_PRODUCT, id_product);
+        valores.put(CN_ID_VARIATION, id_variation);
         valores.put(CN_REFERENCE, reference);
         valores.put(CN_NAME, name);
         valores.put(CN_DESCR, descr);
@@ -72,10 +70,10 @@ public class DataBaseManager {
         return  valores;
     }
 
-    public String[] selectProductxID(String id_product, String qty){
+    public String[] selectProductxID(String id_product, String id_variation, String qty){
         this.openReadableDB();
-        String where = CN_ID_PRODUCT + "= ?";
-        String[] whereArgs = {id_product};
+        String where = CN_ID_PRODUCT + " = ? AND " + CN_ID_VARIATION + " = ?";
+        String[] whereArgs = {id_product, id_variation};
         Cursor cursor = db.query(TABLE_NAME, null, where, whereArgs, null, null, null);
 
         String[] mStrings = new String[2];
@@ -84,7 +82,7 @@ public class DataBaseManager {
         if (cursor.moveToFirst()) {
             do {
                 mStrings[0] = "1"; // true
-                mStrings[1] = cursor.getString(8); // Position column qty
+                mStrings[1] = cursor.getString(9); // Position column qty
             } while (cursor.moveToNext());
         }
         this.closeDB();
@@ -100,30 +98,33 @@ public class DataBaseManager {
         String qty = "0";
         if (cursor.moveToFirst()) {
             do {
-                qty = cursor.getString(8); // Position column qty
+                qty = cursor.getString(9); // Position column qty
             } while (cursor.moveToNext());
         }
         this.closeDB();
         return qty;
     }
 
-    public void insertProduct(String id_product, String reference, String name, String descr, String price, String unity, String percentage_iva, String qty, String image){
+    public void insertProduct(String id_product, String id_variation, String reference, String name, String descr, String price, String unity, String percentage_iva, String qty, String image){
         this.openWriteableDB();
-        db.insert(TABLE_NAME, null, generateContentValues(id_product, reference, name, descr, price, unity, percentage_iva, qty, image));
+        db.insert(TABLE_NAME, null, generateContentValues(id_product, id_variation, reference, name, descr, price, unity, percentage_iva, qty, image));
         this.closeDB();
     }
 
-    public void updateProduct(String id_product, String reference, String name, String descr, String price, String unity, String percentage_iva, String qty, String image) {
+    public void updateProduct(String id_product, String id_variation, String reference, String name, String descr, String price, String unity, String percentage_iva, String qty, String image) {
         this.openWriteableDB();
-        String where = CN_ID_PRODUCT + "= ?";
-        db.update(TABLE_NAME, generateContentValues(id_product, reference, name, descr, price, unity, percentage_iva, qty, image), where, new String[]{String.valueOf(id_product)});
+        String where = CN_ID_PRODUCT + " = ? AND " + CN_ID_VARIATION + " = ?";
+        db.update(TABLE_NAME,
+                generateContentValues(id_product, id_variation, reference, name, descr, price, unity, percentage_iva, qty, image),
+                where,
+                new String[]{ String.valueOf(id_product), String.valueOf(id_variation) });
         this.closeDB();
     }
 
-    public void deleteProduct(String id_product) {
+    public void deleteProduct(String id_product, String id_variation) {
         this.openWriteableDB();
-        String where = CN_ID_PRODUCT + "= ?";
-        db.delete(TABLE_NAME, where, new String[]{String.valueOf(id_product)});
+        String where = CN_ID_PRODUCT + " = ? AND " + CN_ID_VARIATION + " = ?";
+        db.delete(TABLE_NAME, where, new String[]{ String.valueOf(id_product), String.valueOf(id_variation) });
         this.closeDB();
     }
 
@@ -133,7 +134,7 @@ public class DataBaseManager {
 
     public Cursor cursorKangu(){
         this.openWriteableDB();
-        String [] columnas = new String[]{CN_ID, CN_ID_PRODUCT, CN_REFERENCE, CN_NAME, CN_DESCR, CN_PRICE, CN_UNITY, CN_PERCENTAGE, CN_QTY, CN_IMAGE};
+        String [] columnas = new String[]{CN_ID, CN_ID_PRODUCT, CN_ID_VARIATION, CN_REFERENCE, CN_NAME, CN_DESCR, CN_PRICE, CN_UNITY, CN_PERCENTAGE, CN_QTY, CN_IMAGE};
         return db.query(TABLE_NAME,columnas,null,null,null,null,null);
     }
 

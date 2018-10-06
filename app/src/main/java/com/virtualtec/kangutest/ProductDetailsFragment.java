@@ -15,6 +15,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -199,8 +200,16 @@ public class ProductDetailsFragment extends Fragment{
         if (qty.equals("0")){
             ((HomeActivity)getActivity()).setSnackbar(getResources().getString(R.string.different_qty_of_0));
         }else{
+            // Capturar id de la variacion
+            String variationName = spinnerMaturity.getSelectedItem().toString();
+            String variationID = "";
+            for ( int i = 0; i < dataProduct.getVariations().size(); i++) {
+                if (dataProduct.getVariations().get(i).getAttributes().get(0).getOption().contains(variationName)) {
+                    variationID = dataProduct.getVariations().get(i).getId();
+                }
+            }
             // Insert product to cart
-            String[] mStrings = DBmanager.selectProductxID(dataProduct.getId(), qty);
+            String[] mStrings = DBmanager.selectProductxID(dataProduct.getId(), variationID, qty);
             // Unity String
             String unity = "LBS";
             for ( int i = 0; i < dataProduct.getAttributes().size(); i++) {
@@ -210,12 +219,12 @@ public class ProductDetailsFragment extends Fragment{
             }
 
             if(mStrings[0].equals("1")){
-                int new_qty;
+                int new_qty = 0;
                 new_qty = (Integer.parseInt(qty) + Integer.parseInt(mStrings[1]));
-                DBmanager.updateProduct(dataProduct.getId(), dataProduct.getId(), dataProduct.getName(), dataProduct.getShort_description(), dataProduct.getPrice(), unity, "", Integer.toString(new_qty), image.get(0).getSrc());
+                DBmanager.updateProduct(dataProduct.getId(), variationID, dataProduct.getId(), dataProduct.getName(), dataProduct.getShort_description(), dataProduct.getPrice(), unity, "", Integer.toString(new_qty), image.get(0).getSrc());
                 ((HomeActivity)getActivity()).setSnackbarAddCart(getResources().getString(R.string.updated_to_cart));
             }else{
-                DBmanager.insertProduct(dataProduct.getId(), dataProduct.getId(), dataProduct.getName(), dataProduct.getShort_description(), dataProduct.getPrice(), unity, "", qty, image.get(0).getSrc());
+                DBmanager.insertProduct(dataProduct.getId(), variationID, dataProduct.getId(), dataProduct.getName(), dataProduct.getShort_description(), dataProduct.getPrice(), unity, "", qty, image.get(0).getSrc());
                 ((HomeActivity)getActivity()).setSnackbarAddCart(getResources().getString(R.string.added_to_cart));
             }
             textViewQty.setText("0");

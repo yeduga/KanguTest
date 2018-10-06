@@ -134,8 +134,8 @@ public class ProcessPurchaseFragment extends Fragment {
         awesomeValidation = new AwesomeValidation(BASIC);
         awesomeValidation.addValidation(editTextAddress, RegexTemplate.NOT_EMPTY, getResources().getString(R.string.addresserror));
         // Animations
-        btnPay.setVisibility(View.GONE);
-        btnPayAgainstdelivery.setVisibility(View.GONE);
+        // btnPay.setVisibility(View.GONE);
+        // btnPayAgainstdelivery.setVisibility(View.GONE);
 
         InitRetrofit();
         setData();
@@ -156,6 +156,52 @@ public class ProcessPurchaseFragment extends Fragment {
 
     @OnClick(R.id.btn_process_purchase)
     public void functProcessPurchase(){
+//        if (awesomeValidation.validate()){
+//            functLoading(0);
+//            arrayUser = ((HomeActivity)getActivity()).ArrayUser;
+//            String scheduleText = editTextSchedule.getText().toString() + " " + editTextTime.getText().toString();
+//            dataResponse = service.CreateOrder("create_order", arrayUser.get(0).getId(),
+//                    arrayUser.get(0).getFirst_name(), "", editTextAddress.getText().toString(),
+//                    "", arrayUser.get(0).getBilling().getCity(), "", "", "",
+//                    arrayUser.get(0).getBilling().getPhone(), arrayUser.get(0).getEmail(), strDataProducts,
+//                    scheduleText);
+//            dataResponse.enqueue(new Callback<DataResponse>() {
+//                @Override
+//                public void onResponse(Call<DataResponse> call, Response<DataResponse> response) {
+//                    if(getActivity() == null) return;
+//                    functLoading(1);
+//                    DataResponse myResponse = response.body();
+//                    if (myResponse == null){
+//                        Toast.makeText(getActivity(), getResources().getString(R.string.error), Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
+//                    globalIdOrder = myResponse.getId();
+//                    // Disabled
+//                    imageMethods.setVisibility(View.GONE);
+//                    textViewMethods.setVisibility(View.GONE);
+//                    btnProcessPurchase.setVisibility(View.GONE);
+//                    editTextAddress.setEnabled(false);
+//                    editTextSchedule.setEnabled(false);
+//                    // Animations
+//                    btnPay.setVisibility(View.VISIBLE);
+//                    btnPayAgainstdelivery.setVisibility(View.VISIBLE);
+//                    // Delete All Cart
+//                    DBmanager.deleteAll();
+//                    // CONFIRMACION
+//                    Toast.makeText(getActivity(), "Orden generada, por favor procesa con el pago.", Toast.LENGTH_LONG).show();
+//                }
+//                @Override
+//                public void onFailure(Call<DataResponse> call, Throwable t) {
+//                    if(getActivity() == null) return;
+//                    functLoading(1);
+//                    ((HomeActivity)getActivity()).setSnackbar(getResources().getString(R.string.unknown_error));
+//                }
+//            });
+//        }
+    }
+
+    @OnClick(R.id.btn_pay_process_purchase)
+    public void OpenPay(){
         if (awesomeValidation.validate()){
             functLoading(0);
             arrayUser = ((HomeActivity)getActivity()).ArrayUser;
@@ -182,11 +228,22 @@ public class ProcessPurchaseFragment extends Fragment {
                     btnProcessPurchase.setVisibility(View.GONE);
                     editTextAddress.setEnabled(false);
                     editTextSchedule.setEnabled(false);
-                    // Animations
-                    btnPay.setVisibility(View.VISIBLE);
-                    btnPayAgainstdelivery.setVisibility(View.VISIBLE);
+                    editTextTime.setEnabled(false);
                     // Delete All Cart
                     DBmanager.deleteAll();
+                    // Envio a pagar
+                    btnPay.animate().translationY(btnPay.getHeight()).alpha(0.0f).setDuration(300)
+                            .setListener(new AnimatorListenerAdapter() {
+                                @Override
+                                public void onAnimationEnd(Animator animation) {
+                                    super.onAnimationEnd(animation);
+                                    btnPay.setVisibility(View.GONE);
+                                    btnPayAgainstdelivery.setVisibility(View.GONE);
+                                }
+                            });
+                    Intent intent = new Intent(getActivity(), PaymentsActivity.class);
+                    intent.putExtra("idp", globalIdOrder);
+                    startActivity(intent);
                     // CONFIRMACION
                     Toast.makeText(getActivity(), "Orden generada, por favor procesa con el pago.", Toast.LENGTH_LONG).show();
                 }
@@ -200,43 +257,67 @@ public class ProcessPurchaseFragment extends Fragment {
         }
     }
 
-    @OnClick(R.id.btn_pay_process_purchase)
-    public void OpenPay(){
-        btnPay.animate().translationY(btnPay.getHeight()).alpha(0.0f).setDuration(300)
-                .setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        super.onAnimationEnd(animation);
-                        btnPay.setVisibility(View.GONE);
-                        btnPayAgainstdelivery.setVisibility(View.GONE);
-                    }
-                });
-        Intent intent = new Intent(getActivity(), PaymentsActivity.class);
-        intent.putExtra("idp", globalIdOrder);
-        startActivity(intent);
-    }
-
     @OnClick(R.id.btn_pay_againstdelivery_process_purchase)
     public void OpenPayAgainstdelivery(){
-        btnPayAgainstdelivery.animate().translationY(btnPayAgainstdelivery.getHeight()).alpha(0.0f).setDuration(300)
-                .setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        super.onAnimationEnd(animation);
-                        btnPay.setVisibility(View.GONE);
-                        btnPayAgainstdelivery.setVisibility(View.GONE);
+        if (awesomeValidation.validate()){
+            functLoading(0);
+            arrayUser = ((HomeActivity)getActivity()).ArrayUser;
+            String scheduleText = editTextSchedule.getText().toString() + " " + editTextTime.getText().toString();
+            dataResponse = service.CreateOrder("create_order", arrayUser.get(0).getId(),
+                    arrayUser.get(0).getFirst_name(), "", editTextAddress.getText().toString(),
+                    "", arrayUser.get(0).getBilling().getCity(), "", "", "",
+                    arrayUser.get(0).getBilling().getPhone(), arrayUser.get(0).getEmail(), strDataProducts,
+                    scheduleText);
+            dataResponse.enqueue(new Callback<DataResponse>() {
+                @Override
+                public void onResponse(Call<DataResponse> call, Response<DataResponse> response) {
+                    if(getActivity() == null) return;
+                    functLoading(1);
+                    DataResponse myResponse = response.body();
+                    if (myResponse == null){
+                        Toast.makeText(getActivity(), getResources().getString(R.string.error), Toast.LENGTH_SHORT).show();
+                        return;
                     }
-                });
-        AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
-        alertDialog.setTitle("Pago Contra Entrega");
-        alertDialog.setMessage("Recuerde tener el dinero a la mano cuando llegue el domiciliario a la dirección de envío.");
-        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Aceptar",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        ((HomeActivity)getActivity()).setSnackbar(getResources().getString(R.string.order_made));
-                    }
-                });
-        alertDialog.show();
+                    globalIdOrder = myResponse.getId();
+                    // Disabled
+                    imageMethods.setVisibility(View.GONE);
+                    textViewMethods.setVisibility(View.GONE);
+                    btnProcessPurchase.setVisibility(View.GONE);
+                    editTextAddress.setEnabled(false);
+                    editTextSchedule.setEnabled(false);
+                    editTextTime.setEnabled(false);
+                    // Delete All Cart
+                    DBmanager.deleteAll();
+                    // Proceso pago contra entrega
+                    btnPayAgainstdelivery.animate().translationY(btnPayAgainstdelivery.getHeight()).alpha(0.0f).setDuration(300)
+                            .setListener(new AnimatorListenerAdapter() {
+                                @Override
+                                public void onAnimationEnd(Animator animation) {
+                                    super.onAnimationEnd(animation);
+                                    btnPay.setVisibility(View.GONE);
+                                    btnPayAgainstdelivery.setVisibility(View.GONE);
+                                }
+                            });
+                    AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
+                    alertDialog.setTitle("Pago Contra Entrega");
+                    alertDialog.setMessage("Recuerde tener el dinero a la mano cuando llegue el domiciliario a la dirección de envío.");
+                    alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Aceptar",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    ((HomeActivity)getActivity()).setSnackbar(getResources().getString(R.string.order_made));
+                                }
+                            });
+                    alertDialog.show();
+                    Toast.makeText(getActivity(), "Orden generada correctamente.", Toast.LENGTH_LONG).show();
+                }
+                @Override
+                public void onFailure(Call<DataResponse> call, Throwable t) {
+                    if(getActivity() == null) return;
+                    functLoading(1);
+                    ((HomeActivity)getActivity()).setSnackbar(getResources().getString(R.string.unknown_error));
+                }
+            });
+        }
     }
 
     @OnClick(R.id.imagebtn_view_address_processPurchase)

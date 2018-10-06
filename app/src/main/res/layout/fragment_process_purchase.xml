@@ -243,7 +243,8 @@
                         android:text="@string/make_order"
                         android:textSize="11sp"
                         android:background="@drawable/button_oval"
-                        android:textColor="@color/colorWhite"/>
+                        android:textColor="@color/colorWhite"
+                        android:visibility="gone"/>
                     <Button
                         android:id="@+id/btn_pay_process_purchase"
                         android:layout_width="match_parent"

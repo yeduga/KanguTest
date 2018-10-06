@@ -1,5 +1,6 @@
 package com.virtualtec.kangutest;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -149,12 +150,12 @@ public class  CartFragment extends Fragment {
                 String tem_id_prod = Cursor.getString(Cursor.getColumnIndexOrThrow("id_product"));
                 String tem_qty = Cursor.getString(Cursor.getColumnIndexOrThrow("qty"));
                 String tem_unity = Cursor.getString(Cursor.getColumnIndexOrThrow("unity"));
-                String tem_other = Cursor.getString(Cursor.getColumnIndexOrThrow("unity"));
+                String tem_variation = Cursor.getString(Cursor.getColumnIndexOrThrow("id_variation"));
                 itemArticles = itemArticles + Integer.parseInt(Cursor.getString(Cursor.getColumnIndexOrThrow("qty")));
                 int subtotal = Integer.parseInt(Cursor.getString(Cursor.getColumnIndexOrThrow("price"))) * Integer.parseInt(Cursor.getString(Cursor.getColumnIndexOrThrow("qty")));
                 totalCart = totalCart + subtotal;
                 // do what ever you want here
-                data += tem_id_prod + "$" + tem_qty + "$" + tem_unity + "$" + tem_other + "$-";
+                data += tem_id_prod + "$" + tem_qty + "$" + tem_unity + "$" + tem_variation + "$-";
             } while (Cursor.moveToNext());
         }
 
@@ -169,6 +170,26 @@ public class  CartFragment extends Fragment {
         if(listAdapter.getCount() == 0){
             Toast.makeText(getActivity(), getResources().getString(R.string.no_products_cart), Toast.LENGTH_LONG).show();
         }else{
+            DBmanager = new DataBaseManager(getActivity());
+            Cursor = DBmanager.cursorKangu();
+            listViewCart.setAdapter(listAdapter);
+            totalCart = 0;
+            itemArticles = 0;
+            data = "";
+            if (Cursor.moveToFirst()) {
+                do {
+                    String tem_id_prod = Cursor.getString(Cursor.getColumnIndexOrThrow("id_product"));
+                    String tem_qty = Cursor.getString(Cursor.getColumnIndexOrThrow("qty"));
+                    String tem_unity = Cursor.getString(Cursor.getColumnIndexOrThrow("unity"));
+                    String tem_variation = Cursor.getString(Cursor.getColumnIndexOrThrow("id_variation"));
+                    itemArticles = itemArticles + Integer.parseInt(Cursor.getString(Cursor.getColumnIndexOrThrow("qty")));
+                    int subtotal = Integer.parseInt(Cursor.getString(Cursor.getColumnIndexOrThrow("price"))) * Integer.parseInt(Cursor.getString(Cursor.getColumnIndexOrThrow("qty")));
+                    totalCart = totalCart + subtotal;
+                    // do what ever you want here
+                    data += tem_id_prod + "$" + tem_qty + "$" + tem_unity + "$" + tem_variation + "$-";
+                } while (Cursor.moveToNext());
+            }
+
             Bundle bundle = new Bundle();
             bundle.putString("strDataProducts", data);
             bundle.putString("itemProducts", String.valueOf(Cursor.getCount()));
@@ -358,7 +379,7 @@ public class  CartFragment extends Fragment {
 
         /**
          * Click listener for popup menu items
-         */
+         **/
         class MyMenuItemClickListener implements PopupMenu.OnMenuItemClickListener {
 
             int position;
@@ -368,6 +389,7 @@ public class  CartFragment extends Fragment {
                 this.position = position;
             }
 
+            @SuppressLint("SetTextI18n")
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
                 Cursor.moveToPosition(position);
@@ -390,6 +412,7 @@ public class  CartFragment extends Fragment {
                         // Setteo
                         textViewQtyDialog.setText(Cursor.getString(Cursor.getColumnIndexOrThrow("qty")));
                         titleDialog.setText("Editar " + Cursor.getString(Cursor.getColumnIndexOrThrow("name")));
+                        undDialog.setText(Cursor.getString(Cursor.getColumnIndexOrThrow("unity")));
                         priceDialog.setText(format.format(Integer.parseInt(Cursor.getString(Cursor.getColumnIndexOrThrow("price")))));
                         btnSave.setText(getResources().getString(R.string.save_changes));
 
@@ -411,7 +434,7 @@ public class  CartFragment extends Fragment {
                                     toast.setGravity(Gravity.CENTER, 0, 0);
                                     toast.show();
                                 }else{
-                                    DBmanager.updateProduct(Cursor.getString(Cursor.getColumnIndexOrThrow("id_product")), Cursor.getString(Cursor.getColumnIndexOrThrow("id_product")), Cursor.getString(Cursor.getColumnIndexOrThrow("name")), Cursor.getString(Cursor.getColumnIndexOrThrow("descr")), Cursor.getString(Cursor.getColumnIndexOrThrow("price")), "LBS", "", textViewQtyDialog.getText().toString(), Cursor.getString(Cursor.getColumnIndexOrThrow("image")));
+                                    DBmanager.updateProduct(Cursor.getString(Cursor.getColumnIndexOrThrow("id_product")), Cursor.getString(Cursor.getColumnIndexOrThrow("id_variation")), Cursor.getString(Cursor.getColumnIndexOrThrow("id_product")), Cursor.getString(Cursor.getColumnIndexOrThrow("name")), Cursor.getString(Cursor.getColumnIndexOrThrow("descr")), Cursor.getString(Cursor.getColumnIndexOrThrow("price")), Cursor.getString(Cursor.getColumnIndexOrThrow("unity")), "", textViewQtyDialog.getText().toString(), Cursor.getString(Cursor.getColumnIndexOrThrow("image")));
                                     dialog.dismiss();
                                     ((HomeActivity)getActivity()).setSnackbar("Hecho");
                                     Init();
@@ -422,14 +445,23 @@ public class  CartFragment extends Fragment {
 
                         return true;
                     case R.id.action_deleteProductCart:
-                        DBmanager.deleteProduct(Cursor.getString(Cursor.getColumnIndexOrThrow("id_product")));
+                        DBmanager.deleteProduct(Cursor.getString(Cursor.getColumnIndexOrThrow("id_product")), Cursor.getString(Cursor.getColumnIndexOrThrow("id_variation")));
                         final Cursor CursorRedo = Cursor;
                         Snackbar.make(relativeLayout, Cursor.getString(Cursor.getColumnIndexOrThrow("name")) + " borrado", Snackbar.LENGTH_LONG)
                                 .setActionTextColor(getResources().getColor(R.color.colorSnackbarAction))
                                 .setAction(getResources().getString(R.string.redo), new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        DBmanager.insertProduct(CursorRedo.getString(CursorRedo.getColumnIndexOrThrow("id_product")), CursorRedo.getString(CursorRedo.getColumnIndexOrThrow("id_product")), CursorRedo.getString(CursorRedo.getColumnIndexOrThrow("name")), CursorRedo.getString(CursorRedo.getColumnIndexOrThrow("descr")), CursorRedo.getString(CursorRedo.getColumnIndexOrThrow("price")), "LBS", "", CursorRedo.getString(CursorRedo.getColumnIndexOrThrow("qty")), CursorRedo.getString(CursorRedo.getColumnIndexOrThrow("image")));
+                                        DBmanager.insertProduct(CursorRedo.getString(CursorRedo.getColumnIndexOrThrow("id_product")),
+                                                CursorRedo.getString(CursorRedo.getColumnIndexOrThrow("id_variation")),
+                                                CursorRedo.getString(CursorRedo.getColumnIndexOrThrow("id_product")),
+                                                CursorRedo.getString(CursorRedo.getColumnIndexOrThrow("name")),
+                                                CursorRedo.getString(CursorRedo.getColumnIndexOrThrow("descr")),
+                                                CursorRedo.getString(CursorRedo.getColumnIndexOrThrow("price")),
+                                                CursorRedo.getString(CursorRedo.getColumnIndexOrThrow("unity")),
+                                                "",
+                                                CursorRedo.getString(CursorRedo.getColumnIndexOrThrow("qty")),
+                                                CursorRedo.getString(CursorRedo.getColumnIndexOrThrow("image")));
                                         ((HomeActivity)getActivity()).setSnackbar("Hecho");
                                         Init();
                                     }

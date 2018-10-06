@@ -12,21 +12,22 @@ public class DataAttributes implements Serializable{
 
     private String id;
     private String name;
+    private String option;
     private String[] options;
 
-    public DataAttributes(String id, String name, String[] options) {
+    public DataAttributes(String id, String name, String option, String[] options) {
         this.id = id;
         this.name = name;
+        this.option = option;
         this.options = options;
     }
 
     public String getId() {
         return id;
     }
-
     public String getName() {
         return name;
     }
-
+    public String getOption() { return option; }
     public String[] getOptions() { return options; }
 }

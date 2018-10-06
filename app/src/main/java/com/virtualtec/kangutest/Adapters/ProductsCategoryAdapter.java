@@ -1,5 +1,6 @@
 package com.virtualtec.kangutest.Adapters;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Paint;
@@ -107,6 +108,7 @@ public class ProductsCategoryAdapter extends RecyclerView.Adapter<ProductsCatego
         return new MyViewHolder(itemView);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         final DataProducts produc = productList.get(position);
@@ -212,9 +214,17 @@ public class ProductsCategoryAdapter extends RecyclerView.Adapter<ProductsCatego
                             toast.setGravity(Gravity.CENTER, 0, 0);
                             toast.show();
                         }else{
+                            // Capturar id de la variacion
+                            String variationName = "";
+                            String variationID = "";
+                            if (!produc.getVariations().isEmpty()){
+                                variationName = produc.getVariations().get(0).getAttributes().get(0).getOption();
+                                variationID = produc.getVariations().get(0).getId();
+                            }
+
                             // Insert product to cart
                             String qty = textViewQtyDialog.getText().toString();
-                            String[] mStrings = DBmanager.selectProductxID(produc.getId(), qty);
+                            String[] mStrings = DBmanager.selectProductxID(produc.getId(), variationID, qty);
                             // Unity String
                             String unity = "LBS";
                             for ( int i = 0; i < produc.getAttributes().size(); i++) {
@@ -222,13 +232,14 @@ public class ProductsCategoryAdapter extends RecyclerView.Adapter<ProductsCatego
                                     unity = produc.getAttributes().get(i).getOptions()[0];
                                 }
                             }
+
                             if(mStrings[0].equals("1")){
                                 int new_qty;
                                 new_qty = (Integer.parseInt(qty) + Integer.parseInt(mStrings[1]));
-                                DBmanager.updateProduct(produc.getId(), produc.getId(), produc.getName(), produc.getShort_description(), produc.getPrice(), unity, "", Integer.toString(new_qty), image.get(0).getSrc());
+                                DBmanager.updateProduct(produc.getId(), variationID, produc.getId(), produc.getName(), produc.getShort_description(), produc.getPrice(), unity, "", Integer.toString(new_qty), image.get(0).getSrc());
                                 ((HomeActivity)mContext).setSnackbarAddCart(mContext.getResources().getString(R.string.updated_to_cart));
                             }else{
-                                DBmanager.insertProduct(produc.getId(), produc.getId(), produc.getName(), produc.getShort_description(), produc.getPrice(), unity, "", qty, image.get(0).getSrc());
+                                DBmanager.insertProduct(produc.getId(), variationID, produc.getId(), produc.getName(), produc.getShort_description(), produc.getPrice(), unity, "", qty, image.get(0).getSrc());
                                 ((HomeActivity)mContext).setSnackbarAddCart(mContext.getResources().getString(R.string.added_to_cart));
                             }
                             dialog.dismiss();
