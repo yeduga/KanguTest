@@ -112,6 +112,8 @@
     <string name="schedule_list">Programar lista</string>
     <string name="subscribe_list">Suscribir lista</string>
     <string name="addresserror">Ingrese una dirección</string>
+    <string name="scheduleerror">Ingrese una fecha de entrega</string>
+    <string name="timeerror">Ingrese una hora de entrega</string>
     <string name="delete_address">Borrar dirección</string>
     <string name="loading_delete">Eliminando</string>
     <string name="deleted_address">Dirección eliminada</string>
@@ -187,5 +189,6 @@
     <string name="about">Acerca De</string>
     <string name="num_contact_text">Número contacto</string>
     <string name="num_contact">+57 0000000000</string>
+    <string name="from_">A partir de:</string>
 
 </resources>

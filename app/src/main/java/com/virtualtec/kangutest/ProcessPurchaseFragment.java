@@ -1,5 +1,6 @@
 package com.virtualtec.kangutest;
 
+import android.annotation.SuppressLint;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.database.Cursor;
@@ -133,6 +134,8 @@ public class ProcessPurchaseFragment extends Fragment {
         // Validation Form
         awesomeValidation = new AwesomeValidation(BASIC);
         awesomeValidation.addValidation(editTextAddress, RegexTemplate.NOT_EMPTY, getResources().getString(R.string.addresserror));
+        awesomeValidation.addValidation(editTextSchedule, RegexTemplate.NOT_EMPTY, getResources().getString(R.string.scheduleerror));
+        awesomeValidation.addValidation(editTextTime, RegexTemplate.NOT_EMPTY, getResources().getString(R.string.timeerror));
         // Animations
         // btnPay.setVisibility(View.GONE);
         // btnPayAgainstdelivery.setVisibility(View.GONE);
@@ -143,6 +146,7 @@ public class ProcessPurchaseFragment extends Fragment {
         ((HomeActivity)getActivity()).validSesion();
     }
 
+    @SuppressLint("SetTextI18n")
     private void setData() {
         textViewItemProducts.setText(itemProducts);
         textViewItemArticles.setText(itemArticles);
