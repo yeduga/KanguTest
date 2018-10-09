@@ -227,7 +227,15 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
-    // Transaction en fragment
+    // Ejecutar fragment y Finalizar fragmentos anteriores
+    public void FunctFragmentTransactionWithBackStack(Fragment fragment){
+        getSupportFragmentManager().popBackStackImmediate();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_layout, fragment);
+        transaction.commit();
+    }
+
+    // Transaction Ejecutar fragment
     public void FunctFragmentTransaction(Fragment fragment){
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_layout, fragment);

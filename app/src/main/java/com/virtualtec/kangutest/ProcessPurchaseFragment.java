@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -309,6 +310,9 @@ public class ProcessPurchaseFragment extends Fragment {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     ((HomeActivity)getActivity()).setSnackbar(getResources().getString(R.string.order_made));
+
+                                    Fragment selectedFragment = ProfileFragment.newInstance();
+                                    ((HomeActivity)getActivity()).FunctFragmentTransactionWithBackStack(selectedFragment);
                                 }
                             });
                     alertDialog.show();

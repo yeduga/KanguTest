@@ -190,5 +190,6 @@
     <string name="num_contact_text">Número contacto</string>
     <string name="num_contact">+57 0000000000</string>
     <string name="from_">A partir de:</string>
+    <string name="suscribe">Suscribir</string>
 
 </resources>

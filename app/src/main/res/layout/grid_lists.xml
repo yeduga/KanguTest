@@ -97,7 +97,7 @@
                 android:id="@+id/btn_schedulelist_gridList"
                 android:layout_width="wrap_content"
                 android:layout_height="25dp"
-                android:text="@string/program"
+                android:text="@string/suscribe"
                 android:textSize="10sp"
                 android:gravity="center"
                 android:layout_marginRight="5dp"
