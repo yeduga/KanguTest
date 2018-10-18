@@ -108,21 +108,24 @@ public class ProductDetailsFragment extends Fragment{
 
     private void Init() {
         DBmanager = new DataBaseManager(getActivity());
+        linearSpinner.setVisibility(View.GONE);
         dataProduct = (DataProducts) this.getArguments().getSerializable("arrayProduct");
         for ( int i = 0; i < dataProduct.getAttributes().size(); i++) {
             if (dataProduct.getAttributes().get(i).getName().contains("Madurez")) {
+                linearSpinner.setVisibility(View.VISIBLE);
                 spinnerMaturity.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, dataProduct.getAttributes().get(i).getOptions()));
-            }else if (dataProduct.getAttributes().get(i).getName().contains("Unidad")) {
+            }
+            if (dataProduct.getAttributes().get(i).getName().contains("Unidad")) {
                 textViewUND.setText(dataProduct.getAttributes().get(i).getOptions()[0]);
             }
         }
 
-        if (dataProduct.getAttributes().isEmpty()){
-            linearSpinner.setVisibility(View.GONE);
-        }else{
-            spinnerMaturity.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, dataProduct.getAttributes().get(0).getOptions()));
-        }
-        String[] maturity = {"Normal","Verde","Maduro"};
+//        if (dataProduct.getAttributes().isEmpty()){
+//            linearSpinner.setVisibility(View.GONE);
+//        }else{
+//            spinnerMaturity.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, dataProduct.getAttributes().get(0).getOptions()));
+//        }
+
         // ----------
         textNameProduct.setText(dataProduct.getName());
         if(dataProduct.getPrice().equals("")){ textPriceProduct.setText("$ 0.0"); }
